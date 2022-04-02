@@ -1,4 +1,4 @@
-# redis-with-microservice-excercise
+# excercise-microservice-with-fastapi
 I studied by following the video below!
 
 
