@@ -22,7 +22,7 @@ redis = get_redis_connection(
     decode_responses =True
 )
 
-
+# https://youtu.be/Cy9fAvsXGZA?t=3322
 class Order(HashModel):
     product_id: str
     price: float
@@ -36,7 +36,9 @@ class Order(HashModel):
 
 @app.get('/orders/{pk}')
 def get(pk: str):
-    return Order.get(pk);
+    # order = Order.get(pk)
+    # redis.xadd('refund_order', order.dict(), '*')
+    return Order.get(pk)
 
 @app.post('/orders')
 async def create(request: Request, background_tasks: BackgroundTasks): # id, quantity
@@ -57,12 +59,13 @@ async def create(request: Request, background_tasks: BackgroundTasks): # id, qua
 
     order.save()
 
+    # order_completed(order)
+
     background_tasks.add_task(order_completed, order)
 
     return order
 
 def order_completed(order: Order):
-
     time.sleep(5)
     order.status = 'completed'
     order.save()

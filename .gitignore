@@ -1,2 +1,12 @@
 Inventory/simple
 Payment/simple
+
+inventory-frontend/node_modules
+inventory-frontend/.pnp
+.pnp.js
+
+# testing
+inventory-frontend/coverage
+
+# production
+/build

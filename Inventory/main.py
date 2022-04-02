@@ -45,7 +45,8 @@ def format(pk: str):
 
 @app.post('/products')
 def create(product: Product):
-    return product.save();
+    print("안와??")
+    return product.save()
 
 
 @app.get('/products/{pk}')
